@@ -37,10 +37,14 @@ public class DataSourceConfig {
     @Value("${spring.datasource.auto-commit}")
     private boolean autoCommit;
 
+    @Value("${spring.datasource.connection-test-query}")
+    private String connectionTestQuery;
+
     private HikariConfig hikariConfig(String url, String userName, String password){
         HikariConfig config = new HikariConfig();
         config.setDriverClassName(driverClassName);
         config.setAutoCommit(autoCommit);
+        config.setConnectionTestQuery(connectionTestQuery);
         config.setJdbcUrl(url);
         config.setUsername(userName);
         config.setPassword(password);
@@ -56,26 +60,12 @@ public class DataSourceConfig {
     @Bean(name = "spbSqlSession")
     @Primary
     public SqlSessionFactory sqlSessionFactory(@Qualifier("spbDataSource") DataSource dataSource) throws Exception {
-        SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
-        bean.setDataSource(dataSource);
+        SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+        sessionFactory.setDataSource(dataSource);
 
-//        PageHelper pageHelper = new PageHelper();
-//        Properties properties = new Properties();
-//
-//        properties.setProperty("dialect", "mysql");
-//        properties.setProperty("offsetAsPageNum", "true");
-//        properties.setProperty("rowBoundsWithCount", "true");
-//        properties.setProperty("pageSizeZero", "false");
-//        properties.setProperty("reasonable", "false");
-//        //properties.setProperty("params", "pageNum=start;pageSize=limit;");
-//        pageHelper.setProperties(properties);
-//
-//        Interceptor[] plugins = new Interceptor[]{pageHelper};
-//        bean.setPlugins(plugins);
-//
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        bean.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));
-        return bean.getObject();
+        sessionFactory.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));
+        return sessionFactory.getObject();
     }
 
     @Bean(name = "spbTransactionManager")

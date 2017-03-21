@@ -23,7 +23,16 @@ public class UserController {
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public UserDto getUser(@PathVariable String id) throws NotFoundException{
-        UserDto userDto = userService.getById(id);
-        return userDto;
+        try {
+            UserDto userDto = userService.getById(id);
+            if (userDto != null) {
+                return userDto;
+            } else {
+                logger.info("user dto is still a null");
+            }
+        } catch (NotFoundException e) {
+            logger.info("Not found exception");
+        }
+        return new UserDto(20000, "User is null, this is a exception message :(");
     }
 }

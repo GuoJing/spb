@@ -21,8 +21,6 @@ public class UserDaoImpl implements UserMapper {
 
     @Override
     public UserDomain getById(String id) {
-        logger.info("xxxxxxxxxxxxxxxxxxxxxxx");
-        logger.info(String.format("get by id domain id is %s", id));
-        return sqlSession.selectOne("UserMapper.getById");
+        return sqlSession.selectOne("UserMapper.getById", id);
     }
 }
