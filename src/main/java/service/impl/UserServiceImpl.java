@@ -3,7 +3,7 @@ package service.impl;
 import dao.UserMapper;
 import domain.UserDomain;
 import dto.UserDto;
-import org.apache.ibatis.javassist.NotFoundException;
+import exceptions.NotFoundException;
 import org.springframework.stereotype.Service;
 import service.UserService;
 

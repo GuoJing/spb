@@ -1,7 +1,7 @@
 package service;
 
 import dto.UserDto;
-import org.apache.ibatis.javassist.NotFoundException;
+import exceptions.NotFoundException;
 
 /**
  * Created by guojing on 2017/3/20.
