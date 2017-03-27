@@ -14,4 +14,5 @@ public class UserDomain {
     public void setName(String name) {
         this.name = name;
     }
+
 }

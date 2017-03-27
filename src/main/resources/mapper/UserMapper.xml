@@ -10,7 +10,9 @@
         id, name
     </sql>
     <select id="getById" resultMap="BaseResultMap">
-        select <include refid="UserProperties"/> from `user` where id = #{id}
+        select <include refid="UserProperties"/> from user where id = #{id}
     </select>
-
+    <update id="updateNameById">
+        update user set name = #{name} where id = #{id}
+    </update>
 </mapper>

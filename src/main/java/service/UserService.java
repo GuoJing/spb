@@ -1,6 +1,7 @@
 package service;
 
 import dto.UserDto;
+import exceptions.IllegalArgumentException;
 import exceptions.NotFoundException;
 
 /**
@@ -8,4 +9,5 @@ import exceptions.NotFoundException;
  */
 public interface UserService {
     UserDto getById(String id) throws NotFoundException;
+    void  updateNameById(String name, String id) throws  NotFoundException, IllegalArgumentException;
 }

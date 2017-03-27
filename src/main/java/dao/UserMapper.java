@@ -7,4 +7,5 @@ import domain.UserDomain;
  */
 public interface UserMapper {
     UserDomain getById(String id);
+    void updateNameById(String name, String id);
 }

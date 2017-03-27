@@ -4,6 +4,7 @@ import dao.UserMapper;
 import domain.UserDomain;
 import dto.UserDto;
 import exceptions.NotFoundException;
+import exceptions.IllegalArgumentException;
 import org.springframework.stereotype.Service;
 import service.UserService;
 
@@ -24,6 +25,17 @@ public class UserServiceImpl implements UserService {
             throw new NotFoundException("user not found");
         }
         return convertToDto(userDomain);
+    }
+
+    public void updateNameById(String name, String id) throws NotFoundException, IllegalArgumentException {
+        UserDomain userDomain = userMapper.getById(id);
+        if (userDomain == null) {
+            throw new NotFoundException("user not found, should not update");
+        }
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("name should not be empty");
+        }
+        userMapper.updateNameById(name, id);
     }
 
     private UserDto convertToDto(final UserDomain userDomain){
