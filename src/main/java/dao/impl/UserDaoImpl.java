@@ -23,12 +23,12 @@ public class UserDaoImpl implements UserMapper {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public UserDomain getById(String id) {
+    public UserDomain getById(final String id) {
         return sqlSession.selectOne("UserMapper.getById", id);
     }
 
     @Override
-    public void updateNameById(String name, String id) {
+    public final void updateNameById(final String name, final String id) {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         params.put("name", name);

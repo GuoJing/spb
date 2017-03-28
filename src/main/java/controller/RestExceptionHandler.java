@@ -12,9 +12,14 @@ import exceptions.NotFoundException;
  * Created by guojing on 2017/3/21.
  */
 @ControllerAdvice(basePackages = {"controller"})
-public class RestExceptionHandler {
+public final class RestExceptionHandler {
+    /**
+     * Handle exception which raised in application.
+     * @param e exception
+     * @return ResponseEntity
+     */
     @ExceptionHandler(NotFoundException.class)
-    public HttpEntity<?> handleNotFound(NotFoundException e) {
-        return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
+    public HttpEntity<?> handleNotFound(final NotFoundException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 }
