@@ -1,2 +1,2 @@
-INSERT INTO `user` (name, roles) VALUES ('guojing', '');
-INSERT INTO `user` (name, roles) VALUES ('mayue', '');
+INSERT INTO `user` (id, name, roles) VALUES (10000, 'guojing', '');
+INSERT INTO `user` (id, name, roles) VALUES (10001, 'mayue', '');
