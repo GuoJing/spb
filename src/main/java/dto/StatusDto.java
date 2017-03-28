@@ -4,9 +4,24 @@ package dto;
  * Created by guojing on 2017/3/27.
  */
 public class StatusDto {
+    /**
+     * normal dto message.
+     */
     private String message;
 
-    public StatusDto(String message) {this.message = message;}
+    /**
+     * status dto object.
+     * @param statusMessage message
+     */
+    public StatusDto(final String statusMessage) {
+        this.message = statusMessage;
+    }
 
-    public String getMessage() {return message;}
+    /**
+     * get dto message.
+     * @return message
+     */
+    public final String getMessage() {
+        return message;
+    }
 }

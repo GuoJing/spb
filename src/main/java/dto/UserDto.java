@@ -4,19 +4,39 @@ package dto;
  * Created by guojing on 2017/3/18.
  */
 public class UserDto {
+    /**
+     * user dto id.
+     */
     private final long id;
+
+    /**
+     * user dto name.
+     */
     private final String name;
 
-    public UserDto(long id, String name){
-        this.id = id;
-        this.name = name;
+    /**
+     * user dto constructor.
+     * @param userId user id
+     * @param userName user name
+     */
+    public UserDto(final long userId, final String userName) {
+        this.id = userId;
+        this.name = userName;
     }
 
-    public long getId() {
+    /**
+     * user id getter.
+     * @return user id
+     */
+    public final long getId() {
         return id;
     }
 
-    public String getName() {
+    /**
+     * user name getter.
+     * @return user name
+     */
+    public final String getName() {
         return name;
     }
 }

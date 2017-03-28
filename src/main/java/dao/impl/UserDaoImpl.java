@@ -10,25 +10,40 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Created by guojing on 2017/3/20.
  */
 @Repository
 public class UserDaoImpl implements UserMapper {
+    /**
+     * sqlSession.
+     */
     @Resource
     private SqlSession sqlSession;
 
+    /**
+     * logger.
+     */
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    /**
+     * Get user by user id.
+     * @param id String user id
+     * @return sqlSession select one from UserMapper.getById
+     */
     @Override
     public UserDomain getById(final String id) {
         return sqlSession.selectOne("UserMapper.getById", id);
     }
 
+    /**
+     * Update user name by user id.
+     * @param name user name
+     * @param id user id
+     */
     @Override
-    public final void updateNameById(final String name, final String id) {
+    public void updateNameById(final String name, final String id) {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         params.put("name", name);

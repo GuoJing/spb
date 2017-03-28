@@ -39,6 +39,7 @@ public class UserTest {
     public void simpleTest() throws Exception {
         String id = "10000";
         UserDomain userDomain = userMapper.getById(id);
+        assertThat(userDomain).isNotNull();
         assertThat(userDomain.getName()).isEqualTo("guojing");
     }
 }

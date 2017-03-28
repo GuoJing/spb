@@ -111,6 +111,12 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <logViolationsToConsole>true</logViolationsToConsole>
+                    <checkstyleRules>
+                        <module name="FinalClass"/>
+                    </checkstyleRules>
+                </configuration>
             </plugin>
         </plugins>
     </build>

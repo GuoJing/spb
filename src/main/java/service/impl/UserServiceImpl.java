@@ -15,11 +15,19 @@ import javax.annotation.Resource;
  */
 @Service
 public class UserServiceImpl implements UserService {
-
+    /**
+     * User mapper.
+     */
     @Resource
     private UserMapper userMapper;
 
-    public UserDto getById(String id) throws NotFoundException {
+    /**
+     * Get user dto by user id.
+     * @param id user id
+     * @return user dto
+     * @throws NotFoundException user not found
+     */
+    public final UserDto getById(final String id) throws NotFoundException {
         UserDomain userDomain = userMapper.getById(id);
         if (userDomain == null) {
             throw new NotFoundException("user not found");
@@ -27,7 +35,15 @@ public class UserServiceImpl implements UserService {
         return convertToDto(userDomain);
     }
 
-    public void updateNameById(String name, String id) throws NotFoundException, IllegalArgumentException {
+    /**
+     * Update user name by user id.
+     * @param name user name
+     * @param id user id
+     * @throws NotFoundException user not found
+     * @throws IllegalArgumentException args invalid
+     */
+    public final void updateNameById(final String name, final String id)
+            throws NotFoundException, IllegalArgumentException {
         UserDomain userDomain = userMapper.getById(id);
         if (userDomain == null) {
             throw new NotFoundException("user not found, should not update");
@@ -38,7 +54,12 @@ public class UserServiceImpl implements UserService {
         userMapper.updateNameById(name, id);
     }
 
-    private UserDto convertToDto(final UserDomain userDomain){
+    /**
+     * Convert user domain to user dto object.
+     * @param userDomain user domain object
+     * @return user dto object
+     */
+    private UserDto convertToDto(final UserDomain userDomain) {
         return new UserDto(userDomain.getId(), userDomain.getName());
     }
 }

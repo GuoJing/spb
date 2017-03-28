@@ -17,6 +17,7 @@ import javax.sql.DataSource;
 /**
  * Created by guojing on 2017/3/18.
  */
+//CHECKSTYLE:OFF: checkstyle:finalclass
 @Configuration
 public class DataSourceConfig {
     /**
@@ -56,17 +57,23 @@ public class DataSourceConfig {
     private String connectionTestQuery;
 
     /**
-     * hikari config connection pool.
+     * new hikari config object.
+     * @param mysqlDSN mysql dsn
+     * @param mysqlUserName mysql user name
+     * @param mysqlPassword mysql password
      * @return config object
      */
-    private HikariConfig hikariConfig() {
+    public HikariConfig hikariConfig(
+            final String mysqlDSN, final String mysqlUserName,
+            final String mysqlPassword
+    ) {
         HikariConfig config = new HikariConfig();
         config.setDriverClassName(driverClassName);
         config.setAutoCommit(autoCommit);
         config.setConnectionTestQuery(connectionTestQuery);
-        config.setJdbcUrl(this.dsn);
-        config.setUsername(this.username);
-        config.setPassword(this.password);
+        config.setJdbcUrl(mysqlDSN);
+        config.setUsername(mysqlUserName);
+        config.setPassword(mysqlPassword);
         return config;
     }
 
@@ -76,8 +83,10 @@ public class DataSourceConfig {
      */
     @Bean(name = "spbDataSource")
     @Primary
-    private DataSource spbDataSource() {
-        return new HikariDataSource(hikariConfig());
+    public DataSource spbDataSource() {
+        return new HikariDataSource(hikariConfig(
+                dsn, username, password
+        ));
     }
 
     /**
@@ -88,7 +97,7 @@ public class DataSourceConfig {
      */
     @Bean(name = "spbSqlSession")
     @Primary
-    public final SqlSessionFactory sqlSessionFactory(
+    public SqlSessionFactory sqlSessionFactory(
             @Qualifier("spbDataSource") final DataSource dataSource)
             throws Exception {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
@@ -107,7 +116,8 @@ public class DataSourceConfig {
      */
     @Bean(name = "spbTransactionManager")
     @Primary
-    public final DataSourceTransactionManager transactionManager() {
+    public DataSourceTransactionManager transactionManager() {
         return new DataSourceTransactionManager(spbDataSource());
     }
 }
+//CHECKSTYLE:ON: checkstyle:finalclass
