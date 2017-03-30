@@ -11,12 +11,12 @@ public interface UserMapper {
      * @param id user id
      * @return user domain object
      */
-    UserDomain getById(String id);
+    UserDomain getById(Long id);
 
     /**
      * Update user name by user id.
      * @param name user name
      * @param id user id
      */
-    void updateNameById(String name, String id);
+    void updateNameById(String name, Long id);
 }

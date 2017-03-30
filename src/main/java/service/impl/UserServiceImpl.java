@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
      * @return user dto
      * @throws NotFoundException user not found
      */
-    public final UserDto getById(final String id) throws NotFoundException {
+    public final UserDto getById(final Long id) throws NotFoundException {
         UserDomain userDomain = userMapper.getById(id);
         if (userDomain == null) {
             throw new NotFoundException("user not found");
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
      * @throws NotFoundException user not found
      * @throws IllegalArgumentException args invalid
      */
-    public final void updateNameById(final String name, final String id)
+    public final void updateNameById(final String name, final Long id)
             throws NotFoundException, IllegalArgumentException {
         UserDomain userDomain = userMapper.getById(id);
         if (userDomain == null) {

@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import service.TestConfig;
+import config.TestConfig;
 import static org.assertj.core.api.Assertions.*;
 
 /**
@@ -37,7 +37,7 @@ public class UserTest {
 
     @Test
     public void simpleTest() throws Exception {
-        String id = "10000";
+        Long id = 10000L;
         UserDomain userDomain = userMapper.getById(id);
         assertThat(userDomain).isNotNull();
         assertThat(userDomain.getName()).isEqualTo("guojing");

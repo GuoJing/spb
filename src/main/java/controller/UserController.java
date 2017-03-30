@@ -40,7 +40,7 @@ public class UserController {
      * @throws NotFoundException no such a user
      */
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-    public final UserDto getUser(@PathVariable final String id)
+    public final UserDto getUser(@PathVariable final Long id)
             throws NotFoundException {
         return userService.getById(id);
     }
@@ -74,7 +74,7 @@ public class UserController {
     @RequestMapping(value = "/user/{id}", method = RequestMethod.POST)
     public final StatusDto updateNameById(
             @RequestBody final UpdateJSONBody json,
-            @PathVariable final String id)
+            @PathVariable final Long id)
             throws NotFoundException,
             IllegalArgumentException {
         String name = json.getName();

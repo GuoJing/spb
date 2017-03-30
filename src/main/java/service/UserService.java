@@ -14,7 +14,7 @@ public interface UserService {
      * @return user dto
      * @throws NotFoundException user not found
      */
-    UserDto getById(final String id) throws NotFoundException;
+    UserDto getById(final Long id) throws NotFoundException;
 
     /**
      * Update user name by user id.
@@ -23,6 +23,6 @@ public interface UserService {
      * @throws NotFoundException user not found
      * @throws IllegalArgumentException args invalid
      */
-    void  updateNameById(final String name, final String id)
+    void  updateNameById(final String name, final Long id)
             throws  NotFoundException, IllegalArgumentException;
 }

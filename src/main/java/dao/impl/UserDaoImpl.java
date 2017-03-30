@@ -33,7 +33,7 @@ public class UserDaoImpl implements UserMapper {
      * @return sqlSession select one from UserMapper.getById
      */
     @Override
-    public UserDomain getById(final String id) {
+    public UserDomain getById(final Long id) {
         return sqlSession.selectOne("UserMapper.getById", id);
     }
 
@@ -43,7 +43,7 @@ public class UserDaoImpl implements UserMapper {
      * @param id user id
      */
     @Override
-    public void updateNameById(final String name, final String id) {
+    public void updateNameById(final String name, final Long id) {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         params.put("name", name);

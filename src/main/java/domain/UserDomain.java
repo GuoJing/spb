@@ -23,6 +23,11 @@ public class UserDomain {
     }
 
     /**
+     * set user domain.
+     */
+    public final void setId(final Long id) { this.id = id; }
+
+    /**
      * user name getter.
      * @return user name
      */
