@@ -14,12 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = {
         "controller", "dao", "config", "domain", "dto", "service"
 })
-public final class App {
-    /**
-     * Default App Constructor.
-     */
-    private App() { }
-
+public class App {
     /**
      * Spring boot entry point.
      * @param args String[] args
