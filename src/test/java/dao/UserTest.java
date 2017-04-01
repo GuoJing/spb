@@ -36,10 +36,14 @@ public class UserTest {
     }
 
     @Test
-    public void simpleTest() throws Exception {
-        Long id = 10000L;
+    public void userDaoTest() {
+        logger.info("in user dao test 222");
+        Long id = 10L;
         UserDomain userDomain = userMapper.getById(id);
+        boolean isNull = userDomain == null;
+        logger.info(String.format("domain isnull= ", isNull));
         assertThat(userDomain).isNotNull();
         assertThat(userDomain.getName()).isEqualTo("guojing");
+        logger.info("after user dao test");
     }
 }

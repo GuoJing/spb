@@ -41,15 +41,15 @@ public class UserServiceTest {
     @Test
     public void testGetUserById() throws NotFoundException, JsonProcessingException {
         mockFindUserById();
-        UserDto user = userService.getById(10000L);
-        assertThat(user.getId()).isEqualTo(10000L);
+        UserDto user = userService.getById(100L);
+        assertThat(user.getId()).isEqualTo(100L);
         assertThat(user.getName()).isEqualTo("guojing");
     }
 
     private void mockFindUserById() {
         userDomain = new UserDomain();
         userDomain.setName("guojing");
-        userDomain.setId(10000L);
-        given(userMapper.getById(10000L)).willReturn(userDomain);
+        userDomain.setId(100L);
+        given(userMapper.getById(100L)).willReturn(userDomain);
     }
 }

@@ -2,6 +2,8 @@ package config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -21,17 +23,20 @@ import org.springframework.web.client.RestTemplate;
  * Created by guojing on 2017/3/28.
  */
 public class TestConfig {
+
     @SpringBootApplication
-    @ComponentScan(basePackages = {"controller", "dao", "config", "domain", "dto", "service"})
+    @ComponentScan(basePackages = {"dao"})
     @EnableAutoConfiguration(exclude = {WebMvcAutoConfiguration.class, EmbeddedServletContainerAutoConfiguration.class})
     public static class DaoConfig {
 
         @Bean(destroyMethod = "shutdown")
         public EmbeddedDatabase dataSource() {
+            final Logger logger = LoggerFactory.getLogger(this.getClass());
+            logger.info("here is embedded database");
             return new EmbeddedDatabaseBuilder().
                     setType(EmbeddedDatabaseType.H2).
-                    addScript("db.sql").
-                    addScript("db-data.sql").
+                    addScript("user/db.sql").
+                    addScript("user/db-data.sql").
                     build();
         }
     }
