@@ -34,7 +34,11 @@ public class UserDaoImpl implements UserMapper {
      */
     @Override
     public UserDomain getById(final Long id) {
-        return sqlSession.selectOne("UserMapper.getById", id);
+        int seq = (Math.abs(Math.toIntExact(id) % 10));
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        params.put("seq", seq);
+        return sqlSession.selectOne("UserMapper.getById", params);
     }
 
     /**
@@ -44,8 +48,10 @@ public class UserDaoImpl implements UserMapper {
      */
     @Override
     public void updateNameById(final String name, final Long id) {
+        int seq = (Math.abs(Math.toIntExact(id) % 10));
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
+        params.put("seq", seq);
         params.put("name", name);
         sqlSession.update("UserMapper.updateNameById", params);
     }

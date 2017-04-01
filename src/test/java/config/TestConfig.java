@@ -22,7 +22,7 @@ import org.springframework.web.client.RestTemplate;
  */
 public class TestConfig {
     @SpringBootApplication
-    @ComponentScan(basePackages = {"controller", "dao", "config", "domain", "dto", "service"})
+    @ComponentScan(basePackages = {"dao"})
     @EnableAutoConfiguration(exclude = {WebMvcAutoConfiguration.class, EmbeddedServletContainerAutoConfiguration.class})
     public static class DaoConfig {
 
@@ -30,8 +30,8 @@ public class TestConfig {
         public EmbeddedDatabase dataSource() {
             return new EmbeddedDatabaseBuilder().
                     setType(EmbeddedDatabaseType.H2).
-                    addScript("db.sql").
-                    addScript("db-data.sql").
+                    addScript("user/db.sql").
+                    addScript("user/db-data.sql").
                     build();
         }
     }
