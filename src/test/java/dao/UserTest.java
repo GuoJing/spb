@@ -36,9 +36,10 @@ public class UserTest {
     }
 
     @Test
-    public void simpleTest() throws Exception {
+    public void userDaoTest() {
         Long id = 10000L;
         UserDomain userDomain = userMapper.getById(id);
+        boolean isNull = userDomain == null;
         assertThat(userDomain).isNotNull();
         assertThat(userDomain.getName()).isEqualTo("guojing");
     }

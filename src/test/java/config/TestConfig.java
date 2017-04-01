@@ -2,6 +2,8 @@ package config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -21,6 +23,7 @@ import org.springframework.web.client.RestTemplate;
  * Created by guojing on 2017/3/28.
  */
 public class TestConfig {
+
     @SpringBootApplication
     @ComponentScan(basePackages = {"dao"})
     @EnableAutoConfiguration(exclude = {WebMvcAutoConfiguration.class, EmbeddedServletContainerAutoConfiguration.class})
