@@ -12,8 +12,9 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {
-        "controller", "dao", "config", "domain", "dto", "service"
-})
+    "config", "controller", "dao", "domain", "dto",
+    "exceptions", "model.document", "repository",
+    "service"})
 public class App {
     /**
      * Spring boot entry point.

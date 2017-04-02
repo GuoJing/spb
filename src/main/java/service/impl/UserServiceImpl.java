@@ -5,7 +5,9 @@ import domain.UserDomain;
 import dto.UserDto;
 import exceptions.NotFoundException;
 import exceptions.IllegalArgumentException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import repository.UserPropsRepository;
 import service.UserService;
 
 import javax.annotation.Resource;

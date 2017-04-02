@@ -25,7 +25,10 @@ import org.springframework.web.client.RestTemplate;
 public class TestConfig {
 
     @SpringBootApplication
-    @ComponentScan(basePackages = {"dao"})
+    @ComponentScan(basePackages = {
+        "controller", "dao", "domain", "dto",
+        "exceptions", "model.document", "repository",
+        "service"})
     @EnableAutoConfiguration(exclude = {WebMvcAutoConfiguration.class, EmbeddedServletContainerAutoConfiguration.class})
     public static class DaoConfig {
 
@@ -42,7 +45,10 @@ public class TestConfig {
     @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class,
             DataSourceTransactionManagerAutoConfiguration.class,
             EmbeddedServletContainerAutoConfiguration.class})
-    @ComponentScan(basePackages = {"controller", "dao", "config", "domain", "dto", "service"},
+    @ComponentScan(basePackages = {
+        "config", "controller", "dao", "domain", "dto",
+        "exceptions", "model.document", "repository",
+        "service"},
             excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE,
                     value = {DataSourceConfig.class})})
     public static class ServiceConfig {
